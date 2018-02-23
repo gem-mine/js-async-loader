@@ -1,6 +1,6 @@
 {
   "name": "@sdp.nd/js-async-loader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "脚本异步加载组件",
   "license": "MIT",
   "main": "lib/index.js",
@@ -15,9 +15,7 @@
     "build": "npm run babel && shx cp src/style/index.less lib/style/index.less"
   },
   "author": "666595 <pengxing201@163.com>",
-  "files": [
-    "lib"
-  ],
+  "files": ["lib"],
   "dependencies": {
     "scriptjs": "^2.5.8",
     "babel-runtime": "^6.22.0"

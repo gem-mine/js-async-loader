@@ -13,8 +13,8 @@ timeline: true
 
 ---
 
-## 1.0.0
+## 1.0.1
 
-`2017-12-21`
+`2018-02-23`
 
 * [项目源码](http://git.sdp.nd/component-h5/js-async-loader), 兼容 IE8 的 js 异步加载组件

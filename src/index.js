@@ -27,7 +27,7 @@ export default function scriptjsLoader (sdkUrl, detectionName, sdkUrlParams, cal
       }
     }
   })
-  if (detectionNameExist && loadPromiseMap[sdkUrlNew]) {
+  if (loadPromiseMap[sdkUrlNew]) {
     return loadPromiseMap[sdkUrlNew]
   }
   loadPromiseMap[sdkUrlNew] = new Promise((resolve, reject) => {
@@ -35,7 +35,7 @@ export default function scriptjsLoader (sdkUrl, detectionName, sdkUrlParams, cal
       reject(new Error('js cannot be loaded outside browser env'))
       return
     }
-    if (getRootVariable(detectionName)) {
+    if (detectionNameExist && getRootVariable(detectionName)) {
       resolve(getRootVariable(detectionName))
       return
     }
