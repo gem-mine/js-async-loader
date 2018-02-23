@@ -20,7 +20,6 @@ module.exports = {
     plugins: ['dora-plugin-upload']
   },
   webpackConfig: config => {
-    console.log(JSON.stringify(config))
     config.resolve.alias = {
       'fish/lib': '@sdp.nd/fish/lib',
       fish: '@sdp.nd/fish',
