@@ -5,15 +5,11 @@ type: Other
 title: jsAsyncLoader
 ---
 
-通用报图组件。
-
-## UEDC 编号
-
-（UEDC 暂无）
+脚本文件异步加载
 
 ## 何时使用
 
-* 需要显示或获取空间数据的时候。
+* 需要异步加载js库时。
 
 ## API
 
@@ -26,8 +22,6 @@ const callbackName = "callback";
 const detectionNameExist = true;
 scriptjsLoader(sdkUrl, detectionName, sdkUrlParams, callbackName, detectionNameExist);
 ```
-
-### API
 
 | 参数               | 说明                                                               | 类型    | 默认值 |
 | ------------------ | ------------------------------------------------------------------ | ------- | ------ |
