@@ -23,7 +23,7 @@ const detectionName = "BMap";
 const sdkUrlParams = { v: "3.0", ak: "zIT2dNIgEojIIYjD91wIbiespAnwM0Zu" };
 const callbackName = "callback";
 const detectionNameExist = true;
-scriptjsLoader(sdkUrl, detectionName, sdkUrlParams, callbackName, detectionNameExist);
+jsAsyncLoader(sdkUrl, detectionName, sdkUrlParams, callbackName, detectionNameExist);
 ```
 
 ## API
