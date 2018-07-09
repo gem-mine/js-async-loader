@@ -1,5 +1,5 @@
 let $scriptjs = null
-let loadPromiseMap = {}
+const loadPromiseMap = {}
 const getRootVariable = detectionName =>
   detectionName.split('.').reduce((previousValue, currentValue) => previousValue && previousValue[currentValue], window)
 const getCallBackFunName = detectionName => `_$_${detectionName.replace(/\./g, '')}_initialize_$_`
@@ -15,10 +15,10 @@ export default function scriptjsLoader (sdkUrl, detectionName, sdkUrlParams, cal
   if (!sdkUrl || !detectionName) {
     return Promise.resolve({})
   }
-  let queryStringArray = []
+  const queryStringArray = []
   let sdkUrlNew = sdkUrl
   Object.keys(sdkUrlParams).forEach(key => {
-    let value = sdkUrlParams[key]
+    const value = sdkUrlParams[key]
     if (value !== undefined) {
       if (sdkUrlNew.indexOf(':' + key) !== -1) {
         sdkUrlNew = sdkUrlNew.replace(':' + key, value)
