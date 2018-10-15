@@ -71,7 +71,7 @@ export default function scriptjsLoader (sdkUrl, detectionName, sdkUrlParams, cal
         reject(new Error('js sdk initialization error (not loaded)'))
       } else if (detectionName && !callbackName) {
         resolve(getRootVariable(detectionName))
-      } else {
+      } else if (!callbackName) {
         resolve({})
       }
     })

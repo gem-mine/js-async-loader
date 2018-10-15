@@ -56,7 +56,7 @@ class App extends React.Component {
   gMapLoader = sdkUrlParams => {
     sdkUrlParams.region = sdkUrlParams.region || "CN";
     const url = sdkUrlParams.region.toLowerCase() === "cn" ? "//maps.google.cn" : "//maps.googleapis.com";
-    return jsAsyncLoader(url + "/maps/api/js", "google.maps", sdkUrlParams, "callback", true);
+    return jsAsyncLoader(url + "/maps/api/js", "google.maps", sdkUrlParams, "callback");
   };
   componentDidMount() {
     this.gMapLoader({ key: "AIzaSyApHj2_Tdn4ryecpuEejrrpnU6IQZFqmx4" }).then(objBMap => {
