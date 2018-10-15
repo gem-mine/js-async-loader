@@ -53,13 +53,13 @@ import jsAsyncLoader from "@sdp.nd/js-async-loader";
 class App extends React.Component {
   mapInstance;
   NDMap;
-  baiduMapLoader = sdkUrlParams => {
+  gMapLoader = sdkUrlParams => {
     sdkUrlParams.region = sdkUrlParams.region || "CN";
     const url = sdkUrlParams.region.toLowerCase() === "cn" ? "//maps.google.cn" : "//maps.googleapis.com";
     return jsAsyncLoader(url + "/maps/api/js", "google.maps", sdkUrlParams, "callback", true);
   };
   componentDidMount() {
-    this.baiduMapLoader({ key: "AIzaSyApHj2_Tdn4ryecpuEejrrpnU6IQZFqmx4" }).then(objBMap => {
+    this.gMapLoader({ key: "AIzaSyApHj2_Tdn4ryecpuEejrrpnU6IQZFqmx4" }).then(objBMap => {
       this.NDMap = objBMap;
       this.mapInstance = new objBMap.Map(this.container, {
         center: { lng: 116.404, lat: 39.915 },
@@ -90,17 +90,18 @@ import jsAsyncLoader from "@sdp.nd/js-async-loader";
 class App extends React.Component {
   chartsInstance;
   NDChart;
-  hchartsLoader = (versions, modules) => {
+  hchartsLoader = async (versions, modules) => {
+    const uri = `//cdn.bootcss.com/highcharts/:versions/:moduleName.js`;
     versions = versions || "6.0.2";
-    modules = modules || ["highcharts", "js/modules/oldie"];
-    return modules.reduce((previousValue, currentValue) => {
-      return previousValue.then(() =>
-        jsAsyncLoader(`//cdn.bootcss.com/highcharts/:versions/:moduleName.js`, "Highcharts", {
-          versions,
-          moduleName: currentValue
-        })
-      );
-    }, Promise.resolve({}));
+    await jsAsyncLoader(uri, "Highcharts", {
+      versions,
+      moduleName: "highcharts"
+    });
+    await jsAsyncLoader(uri, null, {
+      versions,
+      moduleName: "js/modules/oldie"
+    });
+    return Promise.resolve(Highcharts);
   };
   componentDidMount() {
     const chartOptions = {
@@ -198,14 +199,12 @@ const sdkUrl = `//api.map.baidu.com/api`;
 const detectionName = "BMap";
 const sdkUrlParams = { v: "3.0", ak: "zIT2dNIgEojIIYjD91wIbiespAnwM0Zu" };
 const callbackName = "callback";
-const detectionNameExist = true;
-jsAsyncLoader(sdkUrl, detectionName, sdkUrlParams, callbackName, detectionNameExist);
+jsAsyncLoader(sdkUrl, detectionName, sdkUrlParams, callbackName);
 ```
 
-| 参数               | 说明                                                               | 类型    | 默认值 |
-| ------------------ | ------------------------------------------------------------------ | ------- | ------ |
-| sdkUrl             | 需异步加载的不带参数的 jsSDK 的 url                                | string  | -      |
-| detectionName      | jsSDK 加载后挂在 window 下的变量名称                               | string  | -      |
-| sdkUrlParams       | jsSDK 的 url 参数                                                  | Object  | {}     |
-| callbackName       | jsSDK 的一个参数名称，用于传递回调方法名                           | string  | -      |
-| detectionNameExist | 是否开启 jsSDK 变量已经存在的检测。为 true 会检测，防止重复加载 js | boolean | false  |
+| 参数          | 说明                                     | 类型   | 默认值 | 是否必填 |
+| ------------- | ---------------------------------------- | ------ | ------ | -------- |
+| sdkUrl        | 需异步加载的不带参数的 jsSDK 的 url      | string | -      | 是       |
+| detectionName | jsSDK 加载后挂在 window 下的变量名称     | string | -      | 否       |
+| sdkUrlParams  | jsSDK 的 url 参数                        | Object | {}     | 否       |
+| callbackName  | jsSDK 的一个参数名称，用于传递回调方法名 | string | -      | 否       |

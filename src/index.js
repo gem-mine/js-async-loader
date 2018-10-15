@@ -4,7 +4,7 @@ const getRootVariable = detectionName =>
   detectionName.split('.').reduce((previousValue, currentValue) => previousValue && previousValue[currentValue], window)
 const getCallBackFunName = detectionName => `_$_${detectionName.replace(/\./g, '')}_initialize_$_`
 
-export default function scriptjsLoader (sdkUrl, detectionName, sdkUrlParams, callbackName, detectionNameExist) {
+export default function scriptjsLoader (sdkUrl, detectionName, sdkUrlParams, callbackName) {
   if (!$scriptjs) {
     $scriptjs = require('scriptjs')
   }
@@ -12,7 +12,7 @@ export default function scriptjsLoader (sdkUrl, detectionName, sdkUrlParams, cal
   if (!sdkUrlParams) {
     sdkUrlParams = {}
   }
-  if (!sdkUrl || !detectionName) {
+  if (!sdkUrl) {
     return Promise.resolve({})
   }
   const queryStringArray = []
@@ -35,11 +35,12 @@ export default function scriptjsLoader (sdkUrl, detectionName, sdkUrlParams, cal
       reject(new Error('js cannot be loaded outside browser env'))
       return
     }
-    if (detectionNameExist && getRootVariable(detectionName)) {
+    // 切换路由时
+    if (detectionName && getRootVariable(detectionName)) {
       resolve(getRootVariable(detectionName))
       return
     }
-    if (callbackName) {
+    if (detectionName && callbackName) {
       if (typeof window[getCallBackFunName(detectionName)] !== 'undefined') {
         reject(new Error('js sdk initialization error'))
       }
@@ -61,14 +62,17 @@ export default function scriptjsLoader (sdkUrl, detectionName, sdkUrlParams, cal
       (previousValue, currentValue) => `${previousValue}&${currentValue}=${sdkUrlParams[currentValue]}`,
       ''
     )
-    if (callbackName) {
+    if (detectionName && callbackName) {
       queryString = `${callbackName}=${getCallBackFunName(detectionName)}${queryString}`
     }
+    // scriptjs库保证js是加载并执行完成，不是通过变量检测
     $scriptjs(`${sdkUrlNew}${queryString ? '?' + queryString : ''}`, () => {
-      if (typeof getRootVariable(detectionName) === 'undefined') {
+      if (detectionName && typeof getRootVariable(detectionName) === 'undefined') {
         reject(new Error('js sdk initialization error (not loaded)'))
-      } else if (!callbackName) {
+      } else if (detectionName && !callbackName) {
         resolve(getRootVariable(detectionName))
+      } else {
+        resolve({})
       }
     })
   })
