@@ -101,7 +101,7 @@ class App extends React.Component {
       versions,
       moduleName: "js/modules/oldie"
     });
-    return Promise.resolve(Highcharts);
+    return Highcharts;
   };
   componentDidMount() {
     const chartOptions = {
