@@ -91,16 +91,9 @@ class App extends React.Component {
   chartsInstance;
   NDChart;
   hchartsLoader = async (versions, modules) => {
-    const uri = `//cdn.bootcss.com/highcharts/:versions/:moduleName.js`;
     versions = versions || "6.0.2";
-    await jsAsyncLoader(uri, "Highcharts", {
-      versions,
-      moduleName: "highcharts"
-    });
-    await jsAsyncLoader(uri, null, {
-      versions,
-      moduleName: "js/modules/oldie"
-    });
+    await jsAsyncLoader(`//cdn.bootcss.com/highcharts/${versions}/highcharts.js`, "Highcharts");
+    await jsAsyncLoader(`//cdn.bootcss.com/highcharts/${versions}/js/modules/oldie.js`);
     return Highcharts;
   };
   componentDidMount() {
