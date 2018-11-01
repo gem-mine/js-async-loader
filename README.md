@@ -53,10 +53,10 @@ import jsAsyncLoader from "@sdp.nd/js-async-loader";
 class App extends React.Component {
   mapInstance;
   NDMap;
-  gMapLoader = sdkUrlParams => {
-    sdkUrlParams.region = sdkUrlParams.region || "CN";
-    const url = sdkUrlParams.region.toLowerCase() === "cn" ? "//maps.google.cn" : "//maps.googleapis.com";
-    return jsAsyncLoader(url + "/maps/api/js", "google.maps", sdkUrlParams, "callback");
+  gMapLoader = params => {
+    params.region = params.region || "CN";
+    const url = params.region.toLowerCase() === "cn" ? "//maps.google.cn" : "//maps.googleapis.com";
+    return jsAsyncLoader(url + "/maps/api/js", "google.maps", params, "callback");
   };
   componentDidMount() {
     this.gMapLoader({ key: "AIzaSyApHj2_Tdn4ryecpuEejrrpnU6IQZFqmx4" }).then(objBMap => {
@@ -195,16 +195,16 @@ ReactDOM.render(<App />, mountNode);
 
 ```js
 import jsAsyncLoader from "@sdp.nd/js-async-loader";
-const sdkUrl = `//api.map.baidu.com/api`;
+const href = `//api.map.baidu.com/api`;
 const detectionName = "BMap";
-const sdkUrlParams = { v: "3.0", ak: "zIT2dNIgEojIIYjD91wIbiespAnwM0Zu" };
+const params = { v: "3.0", ak: "zIT2dNIgEojIIYjD91wIbiespAnwM0Zu" };
 const callbackName = "callback";
-jsAsyncLoader(sdkUrl, detectionName, sdkUrlParams, callbackName);
+jsAsyncLoader(href, detectionName, params, callbackName);
 ```
 
 | 参数          | 说明                                     | 类型   | 默认值 | 是否必填 |
 | ------------- | ---------------------------------------- | ------ | ------ | -------- |
-| sdkUrl        | 需异步加载的不带参数的 jsSDK 的 url      | string | -      | 是       |
+| href        | 需异步加载的不带参数的 jsSDK 的 url      | string | -      | 是       |
 | detectionName | jsSDK 加载后挂在 window 下的变量名称     | string | -      | 否       |
-| sdkUrlParams  | jsSDK 的 url 参数                        | Object | {}     | 否       |
+| params  | jsSDK 的 url 参数                        | Object | {}     | 否       |
 | callbackName  | jsSDK 的一个参数名称，用于传递回调方法名 | string | -      | 否       |
