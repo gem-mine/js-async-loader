@@ -1,5 +1,5 @@
 {
-  "name": "@sdp.nd/js-async-loader",
+  "name": "@gem-mine/js-async-loader",
   "version": "2.0.1",
   "description": "脚本异步加载组件",
   "license": "MIT",
@@ -28,7 +28,6 @@
     "scriptjs": "^2.5.8"
   },
   "devDependencies": {
-    "@sdp.nd/eslint-config-react": "^2.0.0",
     "babel-cli": "^6.18.0",
     "babel-eslint": "^7.2.3",
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -42,8 +41,14 @@
     "babel-preset-stage-0": "^6.16.0",
     "bezier-easing": "^2.0.3",
     "eslint": "^4.14.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-config-standard-react": "^9.2.0",
     "eslint-loader": "^1.6.3",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-standard": "^4.0.1",
     "fg-loadcss": "^2.0.1",
     "md-tools-cli": "^0.1.15",
     "md-tools-theme-component-react": "^0.1.20",

@@ -48,7 +48,7 @@ npm run site
 加载单个带回调的脚本
 
 ```jsx
-import jsAsyncLoader from "@sdp.nd/js-async-loader";
+import jsAsyncLoader from "@gem-mine/js-async-loader";
 
 class App extends React.Component {
   mapInstance;
@@ -85,7 +85,7 @@ ReactDOM.render(<App />, mountNode);
 多个脚本文件按顺序异步加载
 
 ```jsx
-import jsAsyncLoader from "@sdp.nd/js-async-loader";
+import jsAsyncLoader from "@gem-mine/js-async-loader";
 
 class App extends React.Component {
   chartsInstance;
@@ -145,7 +145,7 @@ ReactDOM.render(<App />, mountNode);
 需要异步加载样式的场景
 
 ```jsx
-import jsAsyncLoader from "@sdp.nd/js-async-loader";
+import jsAsyncLoader from "@gem-mine/js-async-loader";
 import cssLoader from "fg-loadcss";
 
 async function loadDepend() {
@@ -187,7 +187,7 @@ ReactDOM.render(<App />, mountNode);
 ## API
 
 ```js
-import jsAsyncLoader from "@sdp.nd/js-async-loader";
+import jsAsyncLoader from "@gem-mine/js-async-loader";
 const href = `//api.map.baidu.com/api`;
 const detectionName = "BMap";
 const params = { v: "3.0", ak: "zIT2dNIgEojIIYjD91wIbiespAnwM0Zu" };
