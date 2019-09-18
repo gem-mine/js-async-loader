@@ -15,7 +15,7 @@ IE 8+
 ## 安装
 
 ```bash
-npm install @sdp.nd/js-async-loader --save
+npm install @gem-mine/js-async-loader --save
 ```
 
 ## 运行
