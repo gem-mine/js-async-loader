@@ -25,4 +25,4 @@
 
 `2018-02-23`
 
-* [项目源码](http://git.sdp.nd/component-h5/js-async-loader), 兼容 IE8 的 js 异步加载组件
+* [项目源码](https://github.com/gem-mine/js-async-loader), 兼容 IE8 的 js 异步加载组件
